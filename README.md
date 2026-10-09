@@ -93,3 +93,30 @@ and added to our list of items.
 ## Resources
 
 - [React Forms](https://facebook.github.io/react/docs/forms.html)
+
+## Component Design
+
+App renders Header and ShoppingList. ShoppingList renders ItemForm,
+Filter, and an Item component for each displayed shopping item.
+
+### Existing State
+- App: items initialized from itemData and isDarkMode.
+- ShoppingList: selectedCategory.
+
+### Added State
+- ShoppingList: search and shoppingItems.
+- ItemForm: name and category, with category initially set to "Produce".
+
+ShoppingList holds the search and filter state because it determines
+which items appear. Filter receives the search value and change
+callbacks through props.
+
+ItemForm controls its fields using state. When submitted, it prevents
+a page reload and passes a new item to ShoppingList through
+onItemFormSubmit. ShoppingList updates shoppingItems without mutating
+the existing array.
+
+## Verification
+
+All 8 automated tests passed. Browser checks confirmed dynamic search,
+combined search and category filtering, adding items, and form reset.
